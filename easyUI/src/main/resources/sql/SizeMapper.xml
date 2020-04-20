@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mst.dao.SizeDao">
+
+  <select id="findAll" resultType="com.mst.entity.MeterSize">
+  	select * from size
+  </select>
+      
+  <insert id="addSize" parameterType="com.mst.entity.MeterSize">
+  	insert into size(metersize,createdate) values(#{metersize},#{createdate})
+  </insert>
+  
+  <update id="updateSize" parameterType="com.mst.entity.MeterSize">
+    update size set metersize = #{metersize} where id = #{id}
+  </update>
+  
+  <delete id="deleteSize" parameterType="Integer">
+    delete from size where id = #{id}
+</delete>
+  
+</mapper>
