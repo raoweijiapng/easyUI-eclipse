@@ -16,6 +16,22 @@
   
   <delete id="deleteSize" parameterType="Integer">
     delete from size where id = #{id}
-</delete>
+  </delete>
+  
+  <select id="findAllProducter" resultType="com.mst.entity.Producter">
+  	select * from producter
+  </select>
+  
+  <insert id="addProducter" parameterType="com.mst.entity.Producter">
+  	insert into producter(productername,createdate) values(#{productername},#{createdate})
+  </insert>
+  
+  <update id="updateProducter" parameterType="com.mst.entity.Producter">
+    update producter set productername = #{productername} where id = #{id}
+  </update>
+  
+  <delete id="deleteProducter" parameterType="Integer">
+    delete from producter where id = #{id}
+  </delete>
   
 </mapper>

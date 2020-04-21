@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.mst.entity.MeterSize;
+import com.mst.entity.Producter;
 
 public interface SizeService {
 	
@@ -15,4 +16,13 @@ public interface SizeService {
 	public int updateSize(String meterszie,int id);
 
 	public int deleteSize(int id);
+	
+	public List<Producter> findAllProducter();
+	
+	public int addProducter(String productername,String createdate);
+	
+	public int updateProducter(String productername,int id);
+
+	public int deleteProducter(int id);
+	
 }

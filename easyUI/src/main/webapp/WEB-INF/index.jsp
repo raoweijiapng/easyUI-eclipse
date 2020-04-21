@@ -94,19 +94,101 @@
 			
 			<!-- 管网层级的选项卡 -->
 			<div title="管网层级">
-			
+				<div class="easyui-tabs" data-options="tabPosition:'left',border:false,fit:true,headerWidth:90,">
+					<div title="管网大表"></div>
+					<div title="管网监测点"></div>
+					<div title="小区考核"></div>
+					<div title="管网分区"></div>
+					<div title="供水站点"></div>
+					<div title="视频监控"></div>
+					<div title="水质监测"></div>
+					<div title="智能消火栓"></div>
+				</div>
 			</div>
 			
 			<!-- 运维层级的选项卡 -->
 			<div title="运维层级">
 				<div class="easyui-tabs" data-options="border:false,fit:true">
 					<div title="管线维护">
-						
+						<div class="easyui-layout" data-options="fit:true">
+							<div data-options="region:'center',border:false,split:true" style="height:50%;">
+								<table id="opt-loudian" class="easyui-datagrid" data-options="border:false,fit:true,rownumbers:true,singleSelect:true,url:'',method:'get',toolbar:'#tb-loudian'">
+									<thead>
+										<tr>
+											<th data-options="field:'loudianname',align:'left'" style="width:60%;">漏点名称</th>
+											<th data-options="field:'currentstate',align:'left'" style="width:30%;">当前状态</th>											
+										</tr>
+									</thead>
+								</table>	
+																
+								<div id="tb-loudian" style="height:40px;padding-top:5px;padding-left:10px;">
+					
+									<a onclick="addproducter()" href="#" class="easyui-linkbutton" style="outline:none;">新增</a>
+								
+									<a onclick="updateproducter()" href="#" class="easyui-linkbutton" style="outline:none;">修改</a>
+									
+									<a onclick="deleteproducter()" href="#" class="easyui-linkbutton" style="outline:none;">删除</a>
+									
+									<a onclick="refreshproducter()" href="#" class="easyui-linkbutton" style="outline:none;">报修</a>
+									
+									<a onclick="refreshproducter()" href="#" class="easyui-linkbutton" style="outline:none;">刷新</a>								
+													
+								</div>
+							</div>
+							<div data-options="region:'south',border:false,split:true,title:'漏点报修记录'" style="height:50%;">
+								<table id="opt-loudian-history" class="easyui-datagrid" data-options="border:false,fit:true,rownumbers:true,singleSelect:true,url:'',method:'get'">
+									<thead>
+										<tr>
+											<th data-options="field:'applicantname',align:'left'" style="width:20%;">报修人</th>
+											<th data-options="field:'applicanttime',align:'left'" style="width:40%;">报修时间</th>
+											<th data-options="field:'applicantnumber',align:'left'" style="width:30%;">工单号</th>											
+										</tr>
+									</thead>
+								</table>
+							</div>							
+						</div>
 					</div>
 					
 					<div title="管阀联动分区">
-			
+						<div class="easyui-layout" data-options="fit:true">
+							<div data-options="region:'center',border:false,split:true" style="height:50%;">
+								<table id="opt-loudian" class="easyui-datagrid" data-options="border:false,fit:true,rownumbers:true,singleSelect:true,url:'',method:'get',toolbar:'#tb-fenzu'">
+									<thead>
+										<tr>
+											<th data-options="field:'loudianname',align:'left'" style="width:30%;">分组名称</th>
+											<th data-options="field:'currentstate',align:'left'" style="width:40%;">创建时间</th>											
+										</tr>
+									</thead>
+								</table>	
+																
+								<div id="tb-fenzu" style="height:40px;padding-top:5px;padding-left:10px;">
+					
+									<a onclick="addproducter()" href="#" class="easyui-linkbutton" style="outline:none;">新增</a>
+								
+									<a onclick="updateproducter()" href="#" class="easyui-linkbutton" style="outline:none;">修改</a>
+									
+									<a onclick="deleteproducter()" href="#" class="easyui-linkbutton" style="outline:none;">删除</a>
+									
+									<a onclick="refreshproducter()" href="#" class="easyui-linkbutton" style="outline:none;">刷新</a>								
+													
+								</div>
+							</div>
+							<div data-options="region:'south',border:false,split:true,title:'分组详情'" style="height:50%;">
+								<!-- <table id="opt-loudian-history" class="easyui-datagrid" data-options="border:false,fit:true,rownumbers:true,singleSelect:true,url:'',method:'get'">
+									<thead>
+										<tr>
+											<th data-options="field:'applicantname',align:'left'" style="width:20%;">报修人</th>
+											<th data-options="field:'applicanttime',align:'left'" style="width:40%;">报修时间</th>
+											<th data-options="field:'applicantnumber',align:'left'" style="width:30%;">工单号</th>											
+										</tr>
+									</thead>
+								</table> -->
+							</div>							
+						</div>
 					</div>
+					
+					
+					
 				</div>
 			</div>
 			
@@ -169,10 +251,10 @@
 							
 							<!-- 厂家的数据表格及工具栏操作 -->
 							<div data-options="region:'center'" title="厂家管理" >
-								<table id="opt-producter" class="easyui-datagrid" data-options="border:false,fit:true,rownumbers:true,singleSelect:true,url:'',method:'get',toolbar:'#tb2'">
+								<table id="opt-producter" class="easyui-datagrid" data-options="border:false,fit:true,rownumbers:true,singleSelect:true,url:'findProducter',method:'get',toolbar:'#tb2'">
 									<thead>
 										<tr>
-											<th data-options="field:'metersize',align:'center'" style="width:40%;">厂家</th>
+											<th data-options="field:'productername',align:'center'" style="width:40%;">厂家</th>
 											<th data-options="field:'createdate',align:'center'" style="width:60%;">创建时间</th>											
 										</tr>
 									</thead>
@@ -461,8 +543,8 @@
 	<div id="open_update_meterSize-buttons">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="update_meterSize()" style="outline:none;">提交</a>
 	</div>
-	<!-- 口径数据表格的修改操作没选定数据 -->
-	<div id="open_update_meterSize_failed" class="easyui-dialog" style="width:350px;height:200px;padding:5px" closed="true">	
+	<!-- 数据表格的修改删除操作没选定数据 -->
+	<div id="open_failed" class="easyui-dialog" style="width:350px;height:200px;padding:5px" closed="true">	
 		<div style="margin: 20px;" class="fitem">
 			<label style="text-align: left; height: 30px; line-height: 30px;">请选择数据</label>					
 		</div>		
@@ -476,12 +558,6 @@
 	</div>	
 	<div id="open_delete_meterSize-buttons">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="delete_meterSize()" style="outline:none;">确定</a>
-	</div>	
-	<!-- 口径数据表格的删除操作没选定数据 -->
-	<div id="open_delete_meterSize_failed" class="easyui-dialog" style="width:350px;height:200px;padding:5px" closed="true">	
-		<div style="margin: 20px;" class="fitem">
-			<label style="text-align: left; height: 30px; line-height: 30px;">请选择数据</label>					
-		</div>		
 	</div>
 	
 	<!-- 厂家数据表格的新增操作对话框 -->
@@ -499,16 +575,37 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="add_producter()" style="outline:none;">提交</a>
 	</div>
 	
+	<!-- 厂家数据表格的修改操作对话框 -->
+	<div id="open_update_producter" class="easyui-dialog" style="width:350px;height:200px;padding:5px"	closed="true" buttons="#open_update_producter-buttons">
+		<form id="submit-update-producter" method="post">
+			<div style="margin: 20px;" class="fitem">
+				<label style="text-align: left; height: 30px; line-height: 30px;">厂家名称：</label>				
+				<input name="productername" class="easyui-validatebox" style="width: 200px;height:30px;">
+			</div>
+		</form>		
+	</div>	
+	<div id="open_update_producter-buttons">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="update_producter()" style="outline:none;">提交</a>
+	</div>	
+	
+	<!-- 厂家数据表格的删除操作对话框 -->
+	<div id="open_delete_producter" class="easyui-dialog" style="width:350px;height:200px;padding:5px"	closed="true" buttons="#open_delete_producter-buttons">
+		<div style="margin: 20px;" class="fitem">
+			<label style="text-align: left; height: 30px; line-height: 30px;">确认删除该厂家</label>				
+		</div>				
+	</div>	
+	<div id="open_delete_producter-buttons">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="delete_producter()" style="outline:none;">确定</a>
+	</div>	
+	
 	<!-- 通讯模式数据表格的新增操作对话框 -->
 	<div id="open_add_connectmodel" class="easyui-dialog" style="width:350px;height:200px;padding:5px"	closed="true" buttons="#open_add_connectmodel-buttons">
-		
-			<form id="submit-connectmodel" method="post">
-				<div style="margin: 20px;" class="fitem">
-					<label style="text-align: left; height: 30px; line-height: 30px;">名称：</label>					
-					<input name="productername" class="easyui-validatebox" style="width: 200px;height:30px;">
-				</div>
-			</form>
-		
+		<form id="submit-connectmodel" method="post">
+			<div style="margin: 20px;" class="fitem">
+				<label style="text-align: left; height: 30px; line-height: 30px;">名称：</label>					
+				<input name="productername" class="easyui-validatebox" style="width: 200px;height:30px;">
+			</div>
+		</form>
 	</div>	
 	<div id="open_add_connectmodel-buttons">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="add_connectmodel()" style="outline:none;">提交</a>
@@ -539,7 +636,8 @@
 	
 	//口径数据网格的新增操作
 	function addmeterSize(){
-		$('#open_add_meterSize').dialog('open').dialog('setTitle','新增口径');			
+		$('#open_add_meterSize').dialog('open').dialog('setTitle','新增口径');
+		$('#submit-add').form('clear');
 	}	
 	function add_meterSize(){
 		$('#submit-add').form('submit',{
@@ -574,7 +672,7 @@
 			$('#submit-update').form('load',row);
 			url= '/updateSize?id='+row.id;
 		}else{
-			$('#open_update_meterSize_failed').dialog('open').dialog('setTitle','提示');
+			$('#open_failed').dialog('open').dialog('setTitle','提示');
 		}
 	}	
 	function update_meterSize(){
@@ -609,7 +707,7 @@
 			$('#open_delete_meterSize').dialog('open').dialog('setTitle','提示');
 			url= '/deleteSize?id='+row.id;
 		}else{
-			$('#open_update_meterSize_failed').dialog('open').dialog('setTitle','提示');
+			$('#open_failed').dialog('open').dialog('setTitle','提示');
 		}
 	}
 	function delete_meterSize(){
@@ -632,20 +730,25 @@
 		});		
 	}
 	
-	//厂家数据网格的新增操作
-	function addproducter(){
-		$('#open_add_producter').dialog('open').dialog('setTitle','新增厂家');			
+	//厂家数据网格的查询操作
+	function findproducter(){
+		$('#opt-producter').datagrid('reload');			
 	}
 	
+	//厂家数据网格的新增操作
+	function addproducter(){
+		$('#open_add_producter').dialog('open').dialog('setTitle','新增厂家');
+		$('#submit-addproducter').form('clear');
+	}	
 	function add_producter(){
 		$('#submit-addproducter').form('submit',{
-			url: url,
+			url: 'addProducter',
 			onSubmit: function(){
 				return $(this).form('validate');
 			},
 			success: function(result){
-				var result = eval('('+result+')');
-				if (result.errorMsg){
+				/* var result = eval('('+result+')'); */
+				if (result.status == "failed"){
 					$.messager.show({
 						title: 'Error',
 						msg: result.errorMsg
@@ -658,6 +761,72 @@
 				}
 			}
 		});
+	}
+	
+	//厂家数据网格的修改操作
+	function updateproducter(){
+		var row = $('#opt-producter').datagrid('getSelected');
+		if (row){
+			$('#open_update_producter').dialog('open').dialog('setTitle','修改厂家');
+			$('#submit-update-producter').form('load',row);
+			url= '/updateProducter?id='+row.id;
+		}else{
+			$('#open_failed').dialog('open').dialog('setTitle','提示');
+		}
+	}	
+	function update_producter(){
+		$('#submit-update-producter').form('submit',{
+			url: url,			
+			onSubmit: function(){
+				//进行表单字段验证，当全部字段都有效时返回 true 
+				return $(this).form('validate');
+			},
+			success: function(result){
+				//将后台返回的对象转换成json
+				/* var result = eval('('+result+')'); */
+				if (result.status == "failed"){
+					$.messager.show({
+						title: 'Error',
+						msg: result.errorMsg
+					});
+				} else {
+					//关闭对话框
+					$('#open_update_producter').dialog('close');	
+					// 重新加载口径的数据表格
+					$('#opt-producter').datagrid('reload');	
+				}
+			}
+		});
+	}
+	
+	//厂家数据网格的删除操作
+	function deleteproducter(){
+		var row = $('#opt-producter').datagrid('getSelected');
+		if (row){
+			$('#open_delete_producter').dialog('open').dialog('setTitle','提示');
+			url= '/deleteProducter?id='+row.id;
+		}else{
+			$('#open_failed').dialog('open').dialog('setTitle','提示');
+		}
+	}
+	function delete_producter(){
+		$.ajax({
+		    type: 'GET',
+		    url: url,
+		    dataType: "json",
+		    success: function(result){
+		    	//var result = eval('('+result+')');
+			    if (result.status == "success"){
+			    	$('#open_delete_producter').dialog('close');	
+					$('#opt-producter').datagrid('reload');
+				} else {
+					$.messager.show({
+						title: 'Error',
+						msg: result.errorMsg
+					});
+				}
+		    }
+		});		
 	}
 
 	//通讯模式数据网格的新增操作

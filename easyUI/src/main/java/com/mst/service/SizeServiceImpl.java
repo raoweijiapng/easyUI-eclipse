@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mst.dao.SizeDao;
 import com.mst.entity.MeterSize;
+import com.mst.entity.Producter;
 
 @Service("sizeserviceImpl")
 public class SizeServiceImpl implements SizeService {
@@ -32,6 +33,26 @@ public class SizeServiceImpl implements SizeService {
 	@Override
 	public int deleteSize(int id) {
 		return sizedao.deleteSize(id);
+	}
+
+	@Override
+	public List<Producter> findAllProducter(){
+		return sizedao.findAllProducter();
+	}
+	
+	@Override
+	public int addProducter(String productername,String createdate) {
+		return sizedao.addProducter(productername, createdate);
+	}
+	
+	@Override
+	public int updateProducter(String productername,int id) {
+		return sizedao.updateProducter(productername, id);
+	}
+	
+	@Override
+	public int deleteProducter(int id) {
+		return sizedao.deleteProducter(id);
 	}
 
 }
