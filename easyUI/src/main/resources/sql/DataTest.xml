@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mst.dao.CityDao">
+
+  <select id="findAllNumber" resultType="Integer">
+  	select count(*) from glo_area_copy1
+  </select>
+	
+  <select id="findAllByFy" resultType="com.mst.entity.City">
+  	select id,name,parentid,shortname,mergername,pinyin from glo_area_copy1 limit #{offset},#{rows}
+  </select>
+  
+  <select id="findAllNumberIf" resultType="Integer">
+  	select count(*) from glo_area_copy1 where name like #{name} or pinyin like #{pinyin}
+  </select>
+  
+  <select id="findAllByFyIf" resultType="com.mst.entity.City">
+  	select id,name,parentid,shortname,mergername,pinyin from glo_area_copy1 where name like #{name} or pinyin like #{pinyin} limit #{offset},#{rows}
+  </select>
+  
+</mapper>
